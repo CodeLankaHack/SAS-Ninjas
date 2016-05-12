@@ -1,0 +1,95 @@
+	<!DOCTYPE HTML>
+	<!--
+		Alpha by HTML5 UP
+		html5up.net | @n33co
+		Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	-->
+	<html>
+		<head>
+			<title>Contact - SAS Ninja</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+			<script src="http://maps.googleapis.com/maps/api/js"></script>
+			<script type="text/javascript" src="js/jquery.min.js"></script>
+	    	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	    	<script type="text/javascript" src="js/npm.js"></script>
+
+		    <link href="css/bootstrap.min.css" rel="stylesheet">
+		    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+	<script>
+
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(6.9283,79.8642),
+    zoom:10,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var myLatLng = {lat: 6.9283, lng: 79.8642};
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map
+  });
+
+}
+	google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+		//alert("heheh");
+
+		$.ajax({
+		    type: 'GET',  
+		    data: {msg: 'p'},
+		    url: 'getfromdb.php',
+		    success: function(count_noti) {
+		    	//alert(count_noti);
+		    	var res = count_noti.split("#");
+		    	if(res[5]=='abuse')
+		    		res[5]='trouble';
+		    	$("#list").html("<a href='#' class='alert-link'>"+res[1]+" is facing a "+res[5]+" at location "+ res[4]+","+res[3]+". You better hurry up and help "+res[1]+"</a>");
+
+		    	 var myLatLng = {lat: res[4], lng: res[3]};
+		    	 var marker = new google.maps.Marker({
+				    position: myLatLng,
+				    map: map
+				  });
+
+
+				// if(count_noti){
+				// $("#noti").html("<font style='color:red;'>"+$.cookie('noti_count')+"</font>");
+				// }
+				}
+		 });
+		setTimeout(function(){
+		   window.location.reload(1);
+		}, 8000);
+
+		});
+
+	</script>
+
+
+
+		</head>
+
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<div id="googleMap" style="width:500px;height:380px;margin-left:32%" ></div>
+			</div>
+<br>
+		<div class="alert alert-success" role="alert" id="list">
+		  <a href="#" class="alert-link"></a>
+		</div>
+		</div>
+
+		</div>
+	</body>
+</html>

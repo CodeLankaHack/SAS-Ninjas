@@ -1,5 +1,76 @@
-## Virtual Reality AI Healthcare Assistant
+#[Ideamart sms PHP API](http://www.ideamart.lk) 
 
-Under 12 sustainable development goals, Ensuring healthy lives and promoting the well-being for all at all ages is essential to sustainable development. Significant strides have been made in increasing life expectancy and reducing some of the common killers associated with child and maternal mortality. Major progress has been made on increasing access to clean water and sanitation, reducing malaria, tuberculosis, polio and the spread of HIV/AIDS. However, many more efforts are needed to fully eradicate a wide range of diseases and address many different persistent and emerging health issues. 
-Nowadays the high mortality rate being caused on unawareness and carelessness of their health and bad health habitats. As IT enthusiastic, we thought of coming up with a smart solution to reduce this mortality rate by making them more aware and persuasive on their healthy well-being through a human interaction manner. Basically the solution will be based on Virtual Reality whereas this technology has been virally embedded in every day to day activities. Virtual reality is no longer just about video gaming; it holds promise as nothing short of revolutionary for just about every other industry, as well. So that implementing it into healthcare sector would be more interesting to use. Actually the solution would be more towards to 'Intergral Reality' since it will be integrated with Artificial Intelligent capabilities to predict, suggest and make assumption depending on users' health status. Current era is moving toward intelligence computing in order to make everything automated and learning by itself to take decisions with less human efforts. So our solution also will be something like that which will call as a Virtual Reality AI Healthcare Assistant. Where people get thier Ultimate Sense.
-As some features of our solution, this will get your symptoms as an input and predict your disease based on a probability calculation algorithm and learning pattern of past data and will assist you to further medical care by automatically channel the nearest and best suited physician or doctor depending on your disease or illness. It will interactively speak with you and build a friendly conversation meanwhile collecting user data.
+---
+This is the ideamart SMS PHP API, using the classes here you can recieve messages, send messages to a address, list of addressses or a broadcast message and log using the log class.
+
+###Creating a Listener to recieve messages
+
+    require 'SMSReceiver.php';  // Import the SMSReceiver Class
+    
+    // Create a object of the SMSReceiver and send the incomming request to be decoded
+    
+    $receiver = new SMSReceiver(file_get_contents('php://input'));
+    
+    $receiver->getMessage()     // Get the messsage recieved 
+    $receiver->getAddress()     // Get the address from which message was sent
+    $receiver->getVersion()     // Get the version of the incomming request
+    $receiver->getEncoding()        // Get the encoding of the incomming request
+    $receiver->getApplicationId()   // Get the appid which the request was sent to
+    $receiver->getRequestId()       //  Get the uniqe requestID of the request
+
+****
+
+### Creating a sender to Send SMSs
+*******
+In simulation you can use any appid and password.
+In production a appid and password will be provided when the app is be provisioned in Ideamart.
+
+Production Server URLs
+
+HTTP - [http://api.dialog.lk:8080/sms/send](http://api.dialog.lk:8080/sms/send)
+
+HTTPS -  [https://api.dialog.lk/sms/send](https://api.dialog.lk/sms/send)
+
+
+Simulator Server URL
+HTTP -[http://localhost:7000/sms/send](http://localhost:7000/sms/send)
+
+****
+
+
+
+    require 'SMSSender.php';  // Import the SMSSender Class
+    
+    define('SERVER_URL', 'http://localhost:7000/sms/send'); // Set the Server URL
+    define('APP_ID', 'appid');							  // Set the APPID
+    define('APP_PASSWORD', 'pass');						 // Set the password
+
+	// Create Sender intialze the object with the SeverURL , APPID and APP Password
+    $sender = new SMSSender( SERVER_URL, APP_ID,  APP_PASSWORD); 
+
+
+**To send a SMS to a user**
+
+	$sender->sms( 'This message is send to one particlar no', ADDRESS)
+
+**To send a SMS to number of users**
+
+	$sender->sms( 'Same message to all the address send', array(ADDRESS1, ADDRESS2, ...))
+
+**To broadcast a SMS to all the subcribers of the app**
+
+	$sender->broadcast( 'This is a Broadcast Message')
+   
+   
+   
+   
+   
+   
+   
+    
+    
+    
+    
+    
+    
+
