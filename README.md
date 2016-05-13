@@ -5,4 +5,4 @@ Nowadays the high mortality rate being caused on unawareness and carelessness of
 As some features of our solution, this will get your symptoms as an input and predict your disease based on a probability calculation algorithm and learning pattern of past data and will assist you to further medical care by automatically channel the nearest and best suited physician or doctor depending on your disease or illness. It will interactively speak with you and build a friendly conversation meanwhile collecting user data.
 
 
-Demo - https://drive.google.com/file/d/0B-mnupr7prP4TVNBUlBJWEljRWc/view?ts=57354e7a
+Demo - https://drive.google.com/file/d/0B-mnupr7prP4TVNBUlBJWEljRWc/view?usp=sharing
